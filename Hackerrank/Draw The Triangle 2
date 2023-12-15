@@ -1,0 +1,9 @@
+-------------MY SQL SERVER--------------
+
+DECLARE @n INT
+SET @n=1;
+WHILE @n<=20
+BEGIN
+    SELECT REPLICATE('* ',@n)
+    SET @n= @n+1;
+END
