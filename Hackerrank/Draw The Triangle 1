@@ -1,0 +1,18 @@
+-------MY SQL SERVER --------
+
+DECLARE @count INT
+SET @count=20;
+WHILE (@count>0)
+BEGIN SELECT REPLICATE('* ',@count)
+    SET @count=@count-1;
+END
+
+/* here in SQL, we use DECLARE to declare a variable. we've to use '@' before the variable name. and we've to use the '@' in every part.
+
+REPLICATE('string', integer) function is used to repeat a string for n(integer) amount.
+SET is used to set the value of the variable. 
+
+*/
+------------------------
+-------MY SQL ----------
+
