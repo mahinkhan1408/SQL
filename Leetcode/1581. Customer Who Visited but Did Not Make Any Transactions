@@ -1,4 +1,4 @@
-SN1:
+Solution1:
 ----------------------------------------------------------------------
 SELECT Visits.customer_id, count(Visits.visit_id) as count_no_trans 
 from visits 
@@ -9,24 +9,46 @@ Group by Visits.customer_id;
 
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
-Explanantion:
+Explanation:
 
--->Here we've to count the number of "visit_id" who doesnt have any correspondent transaction_id in the Transactions Table.  
--->we're using left join because we need to include all the rows of the Visits table. 
---> joined two table 
---> In where clause we're taking those rows where the transaction value is null ( we know when there is no match for a joined row,
+-->Here we've to count the number of "visit_id" who don't have any correspondent transaction_id in the Transactions Table.  
+--> We're using left join because we need to include all the rows of the Visits table. 
+--> Joined two table 
+--> In the where clause we're taking those rows where the transaction value is null ( we know when there is no match for a joined row,
     value of that columns in the joined table will be filled with NULL) 
---> Group by is used when we use the fucntions like -"(COUNT(), MAX(), MIN(), SUM(), AVG())" [aggregate functions]
---> we're grouping by the customer_id (it groups the result by the customer_id so that we can use the count function for each customer_id)
+--> Group by is used when we use functions like -"(COUNT(), MAX(), MIN(), SUM(), AVG())" [aggregate functions]
+--> We're grouping by the customer_id (it groups the result by the customer_id so that we can use the count function for each customer_id)
 
 -------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
+Solution2:
+---------------
+SELECT visits.customer_id, COUNT(v.visit_id) as count_no_trans 
+FROM Transactions 
+RIGHT JOIN Visits 
+ON visits.visit_id = transactions.visit_id
+WHERE transactions.visit_id IS NULL
+GROUP BY visits.customer_id
+---------------
+----------
+Explanation: A similar concept to SN1
+------------------------------------------------------------------
+------------------------------------------------------------------
+SOLUTION 3
+--------------------
+SELECT customer_id, count(visit_id) as count_no_trans 
+From visits
+Where visit_id NOT in (SELECT distinct visit_id
+FROM Transactions)
+group by customer_id;
+
+---------------------------------
+-------------------------------
+Explanation: Very easy solution, with the NOT IN clause we will compare the visits_id of transactions and visits
 
 
-
-
-
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
