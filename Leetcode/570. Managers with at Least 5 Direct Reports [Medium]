@@ -1,0 +1,17 @@
+SLTN-1
+---------------------------
+SELECT name
+From employee
+Where id in (SELECT managerId
+FROM employee
+GROUP BY Managerid
+Having count(id)>=5)
+------------------------------------
+SLTN-2
+--------------------------------
+SELECT e1.name
+FROM employee e1
+inner JOIN employee e2
+ON e1.id= e2.managerid
+Group by e2.managerid
+Having COUNT(e2.id)>=5
