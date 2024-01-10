@@ -1,0 +1,16 @@
+DATE_FORMAT(_____,'%Y,%M)
+--- 2022-August
+DATE_FORMAT(_____,'%Y,%m)
+--- 2022-08
+-----------( here Month is case sensitive)--------------
+-------------------------------------
+---------------------------
+SOLUTION-
+---------------
+
+SELECT DATE_FORMAT(trans_date,'%Y-%m') as month,country,COUNT(state) as trans_count, 
+IFNULL(SUM(CASE WHEN state='approved' Then 1 END),0) as approved_count, 
+SUM(amount) as trans_total_amount, 
+IFNULL(SUM(CASE WHEN state='approved' Then amount END),0) as approved_total_amount
+FROM Transactions
+GROUP BY month,country
