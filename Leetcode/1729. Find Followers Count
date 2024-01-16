@@ -1,0 +1,4 @@
+SELECT user_id, ifnull(count(follower_id),0) as followers_count
+FROM Followers
+GROUP BY user_id
+order BY user_id
