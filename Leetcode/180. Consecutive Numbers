@@ -1,0 +1,3 @@
+SELECT distinct(m.num) as ConsecutiveNums 
+FROM logs m, logs n, logs o 
+WHERE m.id= n.id-1 and n.id= o.id-1 AND m.num= n.num AND n.num = o.num 
