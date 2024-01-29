@@ -1,0 +1,5 @@
+SELECT aa as category , COUNT(aa) as accounts_count
+FROM (SELECT (CASE WHEN income<20000 THEN "Low Salary" WHEN income>20000 AND income<50000 THEN "Average Salary" WHEN income> 50000 THEN "High Salary" END) as aa 
+FROM Accounts
+) as bb
+GROUP BY aa
