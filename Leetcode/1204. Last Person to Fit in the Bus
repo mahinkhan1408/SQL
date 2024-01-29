@@ -4,3 +4,12 @@ JOIN QUEUE q On p.turn >= q.turn
 group by p.turn 
 Having SUM(q.weight)<= 1000
 LIMIT 1
+----------------------------------------------------
+----------------------------------------------------
+
+SELECT person_name
+FROM (SELECT person_name,person_id, turn , SUM(weight) over (order by turn) as sumw
+from queue) as a 
+WHERE sumw<= 1000
+ORDER BY turn DESC
+LIMIT 1;
