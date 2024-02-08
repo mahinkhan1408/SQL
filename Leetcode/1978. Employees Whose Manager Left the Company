@@ -1,0 +1,4 @@
+SELECT Employee_id
+FROM employees
+WHERE manager_id NOT IN (SELECT employee_id from employees  ) AND salary < 30000 
+Order by employee_id
